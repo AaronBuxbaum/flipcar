@@ -13,6 +13,7 @@ jobs:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0
+      - run: yarn --frozen-lockfile
       - uses: nrwl/nx-set-shas@v2
       - run: yarn nx workspace-lint
       - run: yarn nx format:check
