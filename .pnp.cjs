@@ -3729,6 +3729,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["axios", "npm:0.21.4"],\
             ["chalk", "npm:4.1.0"],\
             ["node-machine-id", "npm:1.1.12"],\
+            ["rxjs", "npm:7.5.5"],\
             ["strip-json-comments", "npm:3.1.1"],\
             ["tar", "npm:6.1.11"]\
           ],\
