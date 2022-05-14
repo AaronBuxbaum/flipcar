@@ -3728,6 +3728,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@nrwl/nx-cloud", "npm:14.0.3"],\
             ["axios", "npm:0.21.4"],\
             ["chalk", "npm:4.1.0"],\
+            ["dotenv", "npm:16.0.1"],\
             ["node-machine-id", "npm:1.1.12"],\
             ["rxjs", "npm:7.5.5"],\
             ["strip-json-comments", "npm:3.1.1"],\
@@ -8678,6 +8679,13 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/dotenv-npm-10.0.0-36b272df25-f412c5fe8c.zip/node_modules/dotenv/",\
           "packageDependencies": [\
             ["dotenv", "npm:10.0.0"]\
+          ],\
+          "linkType": "HARD"\
+        }],\
+        ["npm:16.0.1", {\
+          "packageLocation": "./.yarn/cache/dotenv-npm-16.0.1-d99e72bb95-f459ffce07.zip/node_modules/dotenv/",\
+          "packageDependencies": [\
+            ["dotenv", "npm:16.0.1"]\
           ],\
           "linkType": "HARD"\
         }]\
