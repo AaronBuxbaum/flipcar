@@ -47,7 +47,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@testing-library/react", "virtual:f24596e28e4cceb943848baf7bf429239468255e88d30058946a172549b5bd364da66ff93500364377b01c8052e5f1e2382cb268af945825a8b499d445be1f1a#npm:13.1.1"],\
             ["@types/express", "npm:4.17.13"],\
             ["@types/jest", "npm:27.4.1"],\
-            ["@types/node", "npm:16.11.7"],\
+            ["@types/node", "npm:16.11.35"],\
             ["@types/react", "npm:18.0.8"],\
             ["@types/react-dom", "npm:18.0.3"],\
             ["@types/react-is", "npm:17.0.3"],\
@@ -5153,10 +5153,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           ],\
           "linkType": "HARD"\
         }],\
-        ["npm:16.11.7", {\
-          "packageLocation": "./.yarn/cache/@types-node-npm-16.11.7-1799a0a435-2706403e6e.zip/node_modules/@types/node/",\
+        ["npm:16.11.35", {\
+          "packageLocation": "./.yarn/cache/@types-node-npm-16.11.35-d7356bc420-c06e8716f5.zip/node_modules/@types/node/",\
           "packageDependencies": [\
-            ["@types/node", "npm:16.11.7"]\
+            ["@types/node", "npm:16.11.35"]\
           ],\
           "linkType": "HARD"\
         }],\
@@ -10043,7 +10043,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@testing-library/react", "virtual:f24596e28e4cceb943848baf7bf429239468255e88d30058946a172549b5bd364da66ff93500364377b01c8052e5f1e2382cb268af945825a8b499d445be1f1a#npm:13.1.1"],\
             ["@types/express", "npm:4.17.13"],\
             ["@types/jest", "npm:27.4.1"],\
-            ["@types/node", "npm:16.11.7"],\
+            ["@types/node", "npm:16.11.35"],\
             ["@types/react", "npm:18.0.8"],\
             ["@types/react-dom", "npm:18.0.3"],\
             ["@types/react-is", "npm:17.0.3"],\
