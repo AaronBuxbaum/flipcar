@@ -24,7 +24,7 @@ describe("smoke tests", () => {
     cy.findByRole("link", { name: /log in/i });
   });
 
-  it("should allow you to make a car", () => {
+  xit("should allow you to make a car", () => {
     const testNote = {
       title: faker.lorem.words(1),
       body: faker.lorem.sentences(1),
