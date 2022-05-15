@@ -4,18 +4,16 @@ import { Form, Link, NavLink, Outlet, useLoaderData } from "@remix-run/react";
 
 import { getUserId } from "~/session.server";
 import { useOptionalUser } from "~/utils";
-import { getCarListItems, getInvestmentListItems } from "~/models/car.server";
+import { getInvestmentListItems } from "~/models/car.server";
 
 type LoaderData = {
-  carListItems: Awaited<ReturnType<typeof getCarListItems>>;
   investmentListItems: Awaited<ReturnType<typeof getInvestmentListItems>>;
 };
 
 export const loader: LoaderFunction = async ({ request }) => {
   const userId = await getUserId(request);
   const investmentListItems = userId ? await getInvestmentListItems({ userId }) : [];
-  const carListItems = await getCarListItems();
-  return json<LoaderData>({ carListItems, investmentListItems });
+  return json<LoaderData>({ investmentListItems });
 };
 
 export default function CarsPage() {

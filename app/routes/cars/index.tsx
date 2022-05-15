@@ -17,13 +17,16 @@ export default function NoteIndexPage() {
   const data = useLoaderData() as LoaderData;
 
   if (data.carListItems.length === 0) {
-    return <div>TEST</div>
+    return <div>No cars available yet!</div>
   }
 
   return (
     <>
       {data.carListItems.map((car) => (
-        <div key={car.id}>{car.id}</div>
+        <Link to={car.id} key={car.id}>
+          <img src={car.image} alt={car.title} height={300} width={300} />
+          <div>{car.title}</div>
+          </Link>
       ))}
     </>
   );

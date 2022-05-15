@@ -14,14 +14,12 @@ export function getCar({
 
 export function getCarListItems() {
   return prisma.car.findMany({
-    select: { id: true },
     orderBy: { updatedAt: "desc" },
   });
 }
 
 export function getInvestmentListItems({ userId }: { userId: string }) {
   return prisma.investment.findMany({
-    select: { id: true },
     orderBy: { updatedAt: "desc" },
   });
 }

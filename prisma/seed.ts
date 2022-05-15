@@ -24,19 +24,25 @@ async function seed() {
     },
   });
 
-  await prisma.note.create({
+  await prisma.car.create({
     data: {
-      title: "My first note",
-      body: "Hello, world!",
-      userId: user.id,
+      make: "Ford",
+      model: "Fiesta",
+      year: 2020,
+      condition: "EXCELLENT",
+      image: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.ebayimg.com%2F00%2Fs%2FNjAwWDgwMA%3D%3D%2Fz%2FH2wAAOSweF1dus75%2F%24_86.JPG&f=1&nofb=1",
+      title: "I've got a 40 in my Ford Fiesta",
     },
   });
 
-  await prisma.note.create({
+  await prisma.car.create({
     data: {
-      title: "My second note",
-      body: "Hello, world!",
-      userId: user.id,
+      make: "Mercedes",
+      model: "CLK 430",
+      year: 2001,
+      condition: "GOOD",
+      image: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fbringatrailer.com%2Fwp-content%2Fuploads%2F2019%2F05%2F2001_mercedes-benz_clk430_coupe_1556918613495d565ef66eDSC_8365-e1557537324384.jpg&f=1&nofb=1",
+      title: "2001 Mercedes CLK430",
     },
   });
 

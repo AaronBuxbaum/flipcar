@@ -14,10 +14,9 @@ model User {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  password   Password?
-  notes      Note[]
-  ratings    Rating[]
-  Investment Investment[]
+  password    Password?
+  ratings     Rating[]
+  investments Investment[]
 }
 
 model Investment {
@@ -30,7 +29,7 @@ model Investment {
   user   User   @relation(fields: [userId], references: [id])
   carId  String
   car    Car    @relation(fields: [carId], references: [id])
-  amount  Float
+  amount Float
 }
 
 model Password {
@@ -58,12 +57,21 @@ model Shop {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  name     String
-  street   String
-  city     String
-  state    String
-  zip      String
-  Mechanic Mechanic[]
+  name      String
+  street    String
+  city      String
+  state     String
+  zip       String
+  mechanics Mechanic[]
+}
+
+enum Condition {
+  EXCELLENT
+  GOOD
+  FAIR
+  POOR
+  PARTS
+  SCRAP
 }
 
 model Car {
@@ -72,13 +80,16 @@ model Car {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  make       String
-  model      String
-  year       Int
-  vin        String
-  Mechanic   Mechanic?    @relation(fields: [mechanicId], references: [id])
-  mechanicId String?
-  Investment Investment[]
+  make        String
+  model       String
+  year        Int
+  title       String
+  condition   Condition
+  image       String
+  vin         String?
+  mechanic    Mechanic?    @relation(fields: [mechanicId], references: [id])
+  mechanicId  String?
+  investments Investment[]
 }
 
 model Rating {
@@ -93,16 +104,4 @@ model Rating {
   mechanic   Mechanic @relation(fields: [mechanicId], references: [id])
   rating     Int
   body       String?
-}
-
-model Note {
-  id    String @id @default(cuid())
-  title String
-  body  String
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
-  userId String
 }

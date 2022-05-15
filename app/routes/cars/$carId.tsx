@@ -1,6 +1,6 @@
-import type { ActionFunction, LoaderFunction } from "@remix-run/node";
-import { json, redirect } from "@remix-run/node";
-import { Form, useCatch, useLoaderData } from "@remix-run/react";
+import type { LoaderFunction } from "@remix-run/node";
+import { json } from "@remix-run/node";
+import { useCatch, useLoaderData } from "@remix-run/react";
 import invariant from "tiny-invariant";
 
 import type { Car } from "~/models/car.server";
@@ -10,7 +10,7 @@ type LoaderData = {
   car: Car;
 };
 
-export const loader: LoaderFunction = async ({ request, params }) => {
+export const loader: LoaderFunction = async ({ params }) => {
   invariant(params.carId, "carId not found");
 
   const car = await getCar({ id: params.carId });
@@ -20,28 +20,15 @@ export const loader: LoaderFunction = async ({ request, params }) => {
   return json<LoaderData>({ car });
 };
 
-export const action: ActionFunction = async ({ request, params }) => {
-  invariant(params.carId, "carId not found");
-
-  return redirect("/cars");
-};
-
 export default function CarDetailsPage() {
-  const data = useLoaderData() as LoaderData;
+  const { car } = useLoaderData() as LoaderData;
 
   return (
     <div>
-      <h3 className="text-2xl font-bold">{data.car.id}</h3>
-      <p className="py-6">{data.car.make}</p>
+      <h3 className="text-2xl font-bold">{car.id}</h3>
+      <img src={car.image} alt={car.title} height={300} width={300} />
+      <p className="py-6">{car.year} {car.make} {car.model}</p>
       <hr className="my-4" />
-      <Form method="post">
-        <button
-          type="submit"
-          className="rounded bg-blue-500  py-2 px-4 text-white hover:bg-blue-600 focus:bg-blue-400"
-        >
-          Delete
-        </button>
-      </Form>
     </div>
   );
 }
