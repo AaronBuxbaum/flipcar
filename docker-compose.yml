@@ -4,8 +4,8 @@ services:
     image: postgres:latest
     restart: always
     environment:
-      - POSTGRES_USER=flipcar
-      - POSTGRES_PASSWORD=flipcar
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
       - POSTGRES_DB=flipcar
     ports:
       - "5432:5432"
