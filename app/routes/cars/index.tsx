@@ -21,13 +21,13 @@ export default function NoteIndexPage() {
   }
 
   return (
-    <>
+    <div className="flex gap-4">
       {data.carListItems.map((car) => (
         <Link to={car.id} key={car.id}>
           <img src={car.image} alt={car.title} height={300} width={300} />
           <div>{car.title}</div>
-          </Link>
+        </Link>
       ))}
-    </>
+    </div>
   );
 }

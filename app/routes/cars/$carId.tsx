@@ -25,9 +25,9 @@ export default function CarDetailsPage() {
 
   return (
     <div>
-      <h3 className="text-2xl font-bold">{car.id}</h3>
+      <h3 className="text-2xl font-bold">{car.year} {car.make} {car.model}</h3>
       <img src={car.image} alt={car.title} height={300} width={300} />
-      <p className="py-6">{car.year} {car.make} {car.model}</p>
+      <p className="py-6">{car.id}</p>
       <hr className="my-4" />
     </div>
   );
