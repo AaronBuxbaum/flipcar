@@ -3,42 +3,36 @@ import { json, redirect } from "@remix-run/node";
 import { Form, useCatch, useLoaderData } from "@remix-run/react";
 import invariant from "tiny-invariant";
 
-import type { Note } from "~/models/note.server";
-import { deleteNote } from "~/models/note.server";
-import { getNote } from "~/models/note.server";
-import { requireUserId } from "~/session.server";
+import type { Car } from "~/models/car.server";
+import { getCar } from "~/models/car.server";
 
 type LoaderData = {
-  note: Note;
+  car: Car;
 };
 
 export const loader: LoaderFunction = async ({ request, params }) => {
-  const userId = await requireUserId(request);
-  invariant(params.noteId, "noteId not found");
+  invariant(params.carId, "carId not found");
 
-  const note = await getNote({ userId, id: params.noteId });
-  if (!note) {
+  const car = await getCar({ id: params.carId });
+  if (!car) {
     throw new Response("Not Found", { status: 404 });
   }
-  return json<LoaderData>({ note });
+  return json<LoaderData>({ car });
 };
 
 export const action: ActionFunction = async ({ request, params }) => {
-  const userId = await requireUserId(request);
-  invariant(params.noteId, "noteId not found");
+  invariant(params.carId, "carId not found");
 
-  await deleteNote({ userId, id: params.noteId });
-
-  return redirect("/notes");
+  return redirect("/cars");
 };
 
-export default function NoteDetailsPage() {
+export default function CarDetailsPage() {
   const data = useLoaderData() as LoaderData;
 
   return (
     <div>
-      <h3 className="text-2xl font-bold">{data.note.title}</h3>
-      <p className="py-6">{data.note.body}</p>
+      <h3 className="text-2xl font-bold">{data.car.id}</h3>
+      <p className="py-6">{data.car.make}</p>
       <hr className="my-4" />
       <Form method="post">
         <button
@@ -62,7 +56,7 @@ export function CatchBoundary() {
   const caught = useCatch();
 
   if (caught.status === 404) {
-    return <div>Note not found</div>;
+    return <div>Car not found</div>;
   }
 
   throw new Error(`Unexpected caught response with status: ${caught.status}`);

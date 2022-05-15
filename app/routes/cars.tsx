@@ -2,31 +2,33 @@ import type { LoaderFunction } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import { Form, Link, NavLink, Outlet, useLoaderData } from "@remix-run/react";
 
-import { requireUserId } from "~/session.server";
-import { useUser } from "~/utils";
-import { getCarListItems } from "~/models/car.server";
+import { getUserId } from "~/session.server";
+import { useOptionalUser } from "~/utils";
+import { getCarListItems, getInvestmentListItems } from "~/models/car.server";
 
 type LoaderData = {
-  noteListItems: Awaited<ReturnType<typeof getCarListItems>>;
+  carListItems: Awaited<ReturnType<typeof getCarListItems>>;
+  investmentListItems: Awaited<ReturnType<typeof getInvestmentListItems>>;
 };
 
 export const loader: LoaderFunction = async ({ request }) => {
-  const userId = await requireUserId(request);
-  const noteListItems = await getCarListItems({ userId });
-  return json<LoaderData>({ noteListItems });
+  const userId = await getUserId(request);
+  const investmentListItems = userId ? await getInvestmentListItems({ userId }) : [];
+  const carListItems = await getCarListItems();
+  return json<LoaderData>({ carListItems, investmentListItems });
 };
 
-export default function NotesPage() {
+export default function CarsPage() {
   const data = useLoaderData() as LoaderData;
-  const user = useUser();
+  const user = useOptionalUser();
 
   return (
     <div className="flex h-full min-h-screen flex-col">
       <header className="flex items-center justify-between bg-slate-800 p-4 text-white">
         <h1 className="text-3xl font-bold">
-          <Link to=".">Notes</Link>
+          <Link to=".">Cars</Link>
         </h1>
-        <p>{user.email}</p>
+        <p>{user?.email}</p>
         <Form action="/logout" method="post">
           <button
             type="submit"
@@ -38,32 +40,24 @@ export default function NotesPage() {
       </header>
 
       <main className="flex h-full bg-white">
-        <div className="h-full w-80 border-r bg-gray-50">
-          <Link to="new" className="block p-4 text-xl text-blue-500">
-            + New Note
-          </Link>
-
-          <hr />
-
-          {data.noteListItems.length === 0 ? (
-            <p className="p-4">No notes yet</p>
-          ) : (
+        {data.investmentListItems.length > 0 &&
+          <div className="h-full w-80 border-r bg-gray-50">
             <ol>
-              {data.noteListItems.map((note) => (
-                <li key={note.id}>
+              {data.investmentListItems.map((investment) => (
+                <li key={investment.id}>
                   <NavLink
                     className={({ isActive }) =>
                       `block border-b p-4 text-xl ${isActive ? "bg-white" : ""}`
                     }
-                    to={note.id}
+                    to={investment.id}
                   >
-                    📝 {note.title}
+                    📝 {investment.id}
                   </NavLink>
                 </li>
               ))}
             </ol>
-          )}
-        </div>
+          </div>
+        }
 
         <div className="flex-1 p-6">
           <Outlet />
