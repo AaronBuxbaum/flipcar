@@ -14,6 +14,13 @@ export function getCar({
 
 export function getCarListItems() {
   return prisma.car.findMany({
+    include: {
+      mechanic: {
+        include: {
+          ratings: true,
+        }
+      },
+    },
     orderBy: { updatedAt: "desc" },
   });
 }

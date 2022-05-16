@@ -9,6 +9,9 @@
     "jsx": "react-jsx",
     "module": "CommonJS",
     "moduleResolution": "node",
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "strictNullChecks": true,
     "resolveJsonModule": true,
     "target": "ES2019",
     "strict": true,
@@ -19,6 +22,7 @@
       "~/*": ["./app/*"]
     },
     "skipLibCheck": true,
-    "noEmit": true
+    "noEmit": true,
+    "incremental": true
   }
 }
